@@ -11,6 +11,10 @@ class Login extends Component {
     password: "",
   };
 
+  componentDidMount() {
+    this.props.isAuthenticated && this.props.history.push('/');
+  }
+
   validateForm = () => (this.state.email.length && this.state.password.length)
 
   handleChange = event => {
