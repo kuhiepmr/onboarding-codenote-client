@@ -8,8 +8,19 @@ import {
 import { Auth } from 'aws-amplify';
 import LoaderButton from '../../components/LoaderButton';
 import "./index.css";
+import { AuthenProps } from "../../App";
 
-class Signup extends Component {
+type SignupState = {
+  email: string,
+  password: string,
+  isLoading: boolean,
+  confirmPassword: string,
+  confirmationCode: string,
+  newUser: any,
+  [x: string]: any,
+}
+
+class Signup extends Component<AuthenProps, SignupState> {
   constructor(props) {
     super(props);
 
@@ -72,7 +83,7 @@ class Signup extends Component {
 
       this.props.userHasAuthenticated(true);
       this.props.history.push("/");
-    } catch(e) {
+    } catch (e) {
       alert(e.message);
       this.setState({ isLoading: false });
     }
