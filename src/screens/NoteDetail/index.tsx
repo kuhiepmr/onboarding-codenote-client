@@ -5,20 +5,8 @@ import './index.css';
 import LoaderButton from '../../components/LoaderButton';
 import config from '../../config';
 import { s3Upload } from '../../libs/awsLib';
-import { AuthenProps } from "../../App";
 
-type NoteDetailState = {
-  isLoading: boolean,
-  isDeleting: boolean,
-  note: any,
-  content: string,
-  attachmentURL: string,
-  [x: string]: any,
-}
-
-class NoteDetail extends Component<AuthenProps, NoteDetailState> {
-  file: any;
-
+class NoteDetail extends Component {
   constructor(props) {
     super(props);
 
@@ -54,7 +42,7 @@ class NoteDetail extends Component<AuthenProps, NoteDetailState> {
   }
 
   getNote() {
-    return API.get("notes", `/notes/${this.props.match.params.id}`, null);
+    return API.get("notes", `/notes/${this.props.match.params.id}`);
   }
 
   saveNote(note) {
@@ -64,7 +52,7 @@ class NoteDetail extends Component<AuthenProps, NoteDetailState> {
   }
 
   deleteNote() {
-    return API.del('notes', `/notes/${this.props.match.params.id}`, null);
+    return API.del('notes', `/notes/${this.props.match.params.id}`);
   }
 
   validateForm() {
@@ -91,7 +79,7 @@ class NoteDetail extends Component<AuthenProps, NoteDetailState> {
     let attachment;
 
     if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE / 1000000} MB.`);
+      alert(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE/1000000} MB.`);
       return;
     }
 
@@ -130,7 +118,7 @@ class NoteDetail extends Component<AuthenProps, NoteDetailState> {
     try {
       await this.deleteNote();
       this.props.history.push("/");
-    } catch (e) {
+    } catch(e) {
       alert(e);
       this.setState({ isDeleting: false });
     }

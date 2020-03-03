@@ -5,17 +5,8 @@ import LoaderButton from "../../components/LoaderButton";
 import { s3Upload } from '../../libs/awsLib'
 import config from "../../config";
 import "./index.css";
-import { AuthenProps } from "../../App";
 
-type NewNoteState = {
-  content: string,
-  isLoading: boolean,
-  [x: string]: any,
-}
-
-export default class NewNote extends Component<AuthenProps, NewNoteState> {
-  file: any;
-
+export default class NewNote extends Component {
   constructor(props) {
     super(props);
 
@@ -45,7 +36,7 @@ export default class NewNote extends Component<AuthenProps, NewNoteState> {
     event.preventDefault();
 
     if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE / 1000000} MB.`);
+      alert(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE/1000000} MB.`);
       return;
     }
 
@@ -61,7 +52,7 @@ export default class NewNote extends Component<AuthenProps, NewNoteState> {
         content: this.state.content
       });
       this.props.history.push("/");
-    } catch (e) {
+    } catch(e) {
       alert(e);
       this.setState({ isLoading: false });
     }

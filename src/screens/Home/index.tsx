@@ -6,14 +6,8 @@ import { PageHeader, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { userHasAuthenticated } from '../../actions/authenticate';
 import "./index.css";
-import { AuthenProps } from '../../App';
 
-type HomeState = {
-  isLoading: boolean,
-  notes: Array<any>
-}
-
-class Home extends Component<AuthenProps, HomeState> {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -31,7 +25,7 @@ class Home extends Component<AuthenProps, HomeState> {
     try {
       const notes = await this.notes();
       this.setState({ notes });
-    } catch (e) {
+    } catch(e) {
       alert(e);
     }
 
@@ -39,34 +33,33 @@ class Home extends Component<AuthenProps, HomeState> {
   }
 
   notes() {
-    return API.get("notes", "/notes", null);
+    return API.get("notes", "/notes");
   }
 
   renderNotesList(notes) {
-    // what was "{}" for ???
-    return [].concat(notes).map(
+    return [{}].concat(notes).map(
       (note, i) =>
         i !== 0
           ? <LinkContainer
-            key={note.noteId}
-            to={`/notes/${note.noteId}`}
-          >
-            <ListGroupItem header={note.content.trim().split("\n")[0]}>
-              {"Created: " + new Date(note.createdAt).toLocaleString()}
-            </ListGroupItem>
-          </LinkContainer>
+              key={note.noteId}
+              to={`/notes/${note.noteId}`}
+            >
+              <ListGroupItem header={note.content.trim().split("\n")[0]}>
+                {"Created: " + new Date(note.createdAt).toLocaleString()}
+              </ListGroupItem>
+            </LinkContainer>
           : <LinkContainer
-            key="new"
-            to="/notes/new"
-          >
-            <ListGroupItem>
-              <h4>
-                <b>{"\uFF0B"}</b> Create a new note
+              key="new"
+              to="/notes/new"
+            >
+              <ListGroupItem>
+                <h4>
+                  <b>{"\uFF0B"}</b> Create a new note
                 </h4>
-            </ListGroupItem>
-          </LinkContainer>
+              </ListGroupItem>
+            </LinkContainer>
     );
-  }
+}
 
   renderLander() {
     return (
@@ -78,7 +71,7 @@ class Home extends Component<AuthenProps, HomeState> {
   }
 
   renderNotes() {
-    return (
+    return(
       <div className="notes">
         <PageHeader>All notes</PageHeader>
         <ListGroup>

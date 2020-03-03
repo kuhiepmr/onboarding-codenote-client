@@ -8,18 +8,7 @@ import './App.css';
 import { userHasAuthenticated } from './actions/authenticate';
 import ScreensRoot from './screens/Root';
 
-export type AuthenProps = {
-  isAuthenticated: boolean,
-  userHasAuthenticated: (bool: boolean) => any,
-  history: any,
-  match: any,
-}
-
-type AppState = {
-  isAuthenticating
-}
-
-class App extends Component<AuthenProps, AppState> {
+class App extends Component {
   constructor(props) {
     super(props);
 

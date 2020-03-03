@@ -6,9 +6,8 @@ import { Auth } from 'aws-amplify';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { userHasAuthenticated } from '../../actions/authenticate';
-import { AuthenProps } from '../../App';
 
-class Navigation extends React.Component<AuthenProps> {
+class Navigation extends React.Component {
   handleLogout = async () => {
     await Auth.signOut();
     this.props.userHasAuthenticated(false);
@@ -29,13 +28,13 @@ class Navigation extends React.Component<AuthenProps> {
             {this.props.isAuthenticated
               ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
               : <Fragment>
-                <LinkContainer to="/signup">
-                  <NavItem>Signup</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/login">
-                  <NavItem>Login</NavItem>
-                </LinkContainer>
-              </Fragment>
+                  <LinkContainer to="/signup">
+                    <NavItem>Signup</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <NavItem>Login</NavItem>
+                  </LinkContainer>
+                </Fragment>
             }
           </Nav>
         </Navbar.Collapse>
