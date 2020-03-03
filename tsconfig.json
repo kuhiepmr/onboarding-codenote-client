@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "baseUrl": ".",
     "skipLibCheck": true,
@@ -20,8 +16,5 @@
     "noEmit": true,
     "jsx": "preserve"
   },
-  "include": [
-    "src/screens/Login",
-    "src/screens/NewNote",
-  ]
+  "include": ["src"]
 }
