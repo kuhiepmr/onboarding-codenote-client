@@ -13,9 +13,9 @@ import NotFound from './NotFound';
 
 const ScreensRoot = () => (
   <Fragment>
-    <AppliedRoute component={Navigation} />
+    <AppliedRoute component={Navigation} props={{}} />
     <Switch>
-      <AppliedRoute exact path="/" component={Home} />
+      <AppliedRoute exact path="/" component={Home} props={{}} />
       <UnauthenticatedRoute path="/signup" exact component={Signup} />
       <UnauthenticatedRoute path="/login" exact component={Login} />
       <AuthenticatedRoute path="/notes/new" exact component={NewNote} />
