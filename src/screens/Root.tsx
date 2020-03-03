@@ -6,6 +6,7 @@ import Navigation from '../components/Navigation';
 import UnauthenticatedRoute from '../components/UnauthenticatedRoute';
 import Home from './Home';
 import Login from './Login';
+import NewNote from './NewNote';
 import NoteDetail from './NoteDetail';
 import NotFound from './NotFound';
 import Signup from './Signup';
@@ -17,6 +18,7 @@ const ScreensRoot = ({ childProps }) => (
       <AppliedRoute exact path="/" component={Home} props={childProps} />
       <AppliedRoute path="/login" exact component={Login} props={childProps} />
       <UnauthenticatedRoute path="/signup" exact component={Signup} props={childProps} />
+      <AuthenticatedRoute path="/notes/new" exact component={NewNote} props={childProps} />
       <AuthenticatedRoute path="/notes/:id" exact component={NoteDetail} props={childProps} />
       <Route component={NotFound} />
     </Switch>
