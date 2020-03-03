@@ -1,8 +1,10 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import React, { Fragment } from 'react';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
+import { authenticate } from "../../actions/authenticate";
 
 class Navigation extends React.Component {
   handleLogout = async () => {
@@ -25,13 +27,13 @@ class Navigation extends React.Component {
             {this.props.isAuthenticated
               ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
               : <Fragment>
-                  <LinkContainer to="/signup">
-                    <NavItem>Signup</NavItem>
-                  </LinkContainer>
-                  <LinkContainer to="/login">
-                    <NavItem>Login</NavItem>
-                  </LinkContainer>
-                </Fragment>
+                <LinkContainer to="/signup">
+                  <NavItem>Signup</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/login">
+                  <NavItem>Login</NavItem>
+                </LinkContainer>
+              </Fragment>
             }
           </Nav>
         </Navbar.Collapse>
@@ -40,4 +42,12 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.authenticate.isAuthenticated,
+});
+
+const mapDispatchToProps = dispatch => ({
+  userHasAuthenticated: (bool) => dispatch(authenticate(bool)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

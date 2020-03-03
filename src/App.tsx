@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { authenticate } from './actions/authenticate';
 import './App.css';
 import ScreensRoot from './screens/Root';
 
@@ -17,6 +18,7 @@ class App extends Component {
   async componentDidMount() {
     try {
       await Auth.currentSession();
+      this.props.userHasAuthenticated(true);
     }
     catch (e) {
       if (e !== 'No current user') {
@@ -29,6 +31,7 @@ class App extends Component {
 
   handleLogout = async () => {
     await Auth.signOut();
+    this.props.userHasAuthenticated(false);
     this.props.history.push('/login');
   }
 
@@ -42,4 +45,8 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+const mapDispatchToProps = dispatch => ({
+  userHasAuthenticated: (bool) => dispatch(authenticate(bool)),
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(App));
