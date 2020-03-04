@@ -54,6 +54,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
+    "redux-mock-store": "^1.5.4",
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.0",
@@ -82,9 +83,17 @@
     "not op_mini all"
   ],
   "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
+      "!src/**/*.d.ts",
+      "!src/libs/*",
+      "!src/*.ts",
+      "!src/config.tsx"
     ],
     "resolver": "jest-pnp-resolver",
     "setupFiles": [

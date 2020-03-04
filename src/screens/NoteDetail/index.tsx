@@ -106,7 +106,7 @@ class NoteDetail extends Component<IProps, IStates> {
     let attachment;
 
     if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE/1000000} MB.`);
+      alert(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE / 1000000} MB.`);
       return;
     }
 
@@ -145,7 +145,7 @@ class NoteDetail extends Component<IProps, IStates> {
     try {
       await this.deleteNote();
       this.props.history.push("/");
-    } catch(e) {
+    } catch (e) {
       alert(e);
       this.setState({ isDeleting: false });
     }

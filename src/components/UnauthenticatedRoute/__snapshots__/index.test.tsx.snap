@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<UnauthenticatedRoute
+  component={
+    <Connect(Login)
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Login
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+        userHasAuthenticated={[Function]}
+      >
+        <div
+          className="Login"
+        >
+          <form
+            onSubmit={[Function]}
+          >
+            <FormGroup
+              bsClass="form-group"
+              bsSize="large"
+              controlId="email"
+            >
+              <div
+                className="form-group form-group-lg"
+              >
+                <ControlLabel
+                  bsClass="control-label"
+                  srOnly={false}
+                >
+                  <label
+                    className="control-label"
+                    htmlFor="email"
+                  >
+                    Email
+                  </label>
+                </ControlLabel>
+                <FormControl
+                  autoFocus={true}
+                  bsClass="form-control"
+                  componentClass="input"
+                  onChange={[Function]}
+                  type="email"
+                  value=""
+                >
+                  <input
+                    autoFocus={true}
+                    className="form-control"
+                    id="email"
+                    onChange={[Function]}
+                    type="email"
+                    value=""
+                  />
+                </FormControl>
+              </div>
+            </FormGroup>
+            <FormGroup
+              bsClass="form-group"
+              bsSize="large"
+              controlId="password"
+            >
+              <div
+                className="form-group form-group-lg"
+              >
+                <ControlLabel
+                  bsClass="control-label"
+                  srOnly={false}
+                >
+                  <label
+                    className="control-label"
+                    htmlFor="password"
+                  >
+                    Password
+                  </label>
+                </ControlLabel>
+                <FormControl
+                  bsClass="form-control"
+                  componentClass="input"
+                  onChange={[Function]}
+                  type="password"
+                  value=""
+                >
+                  <input
+                    className="form-control"
+                    id="password"
+                    onChange={[Function]}
+                    type="password"
+                    value=""
+                  />
+                </FormControl>
+              </div>
+            </FormGroup>
+            <LoaderButton
+              block={true}
+              bsSize="large"
+              disabled={true}
+              isLoading={false}
+              loadingText="Logging in ..."
+              text="Login"
+              type="submit"
+            >
+              <Button
+                active={false}
+                block={true}
+                bsClass="btn"
+                bsSize="large"
+                bsStyle="default"
+                className="LoaderButton "
+                disabled={true}
+                type="submit"
+              >
+                <button
+                  className="LoaderButton  btn btn-lg btn-default btn-block"
+                  disabled={true}
+                  type="submit"
+                >
+                  Login
+                </button>
+              </Button>
+            </LoaderButton>
+          </form>
+        </div>
+      </Login>
+    </Connect(Login)>
+  }
+  dispatch={[Function]}
+  isAuthenticated={true}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+/>
+`;
