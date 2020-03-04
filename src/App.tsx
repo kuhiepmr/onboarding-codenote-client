@@ -1,12 +1,11 @@
+import { Auth } from 'aws-amplify';
+import { History } from 'history';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { Auth } from 'aws-amplify';
-import { History } from 'history';
-import logo from './logo.svg';
-import './App.css';
 import { userHasAuthenticated } from './actions/authenticate';
+import './App.css';
 import ScreensRoot from './screens/Root';
 
 interface IStates {

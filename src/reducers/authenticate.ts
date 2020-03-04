@@ -1,26 +1,29 @@
-import { actionTypes } from '../actions/authenticate';
+import { actionTypes } from "../actions/authenticate";
 
 interface IStates {
-  isAuthenticated: boolean,
+  isAuthenticated: boolean;
 }
 
-interface IActions {
-  type: string,
-  payload: Object,
+export interface IActions {
+  type: string;
+  payload: Object;
 }
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: false
 };
 
-export default function authenticate(state: IStates = initialState, action: IActions) {
+export default function authenticate(
+  state: IStates = initialState,
+  action: IActions
+) {
   switch (action.type) {
     case actionTypes.LOGIN_SUCCESS:
       return {
         ...state,
-        isAuthenticated: action.payload,
+        isAuthenticated: action.payload
       };
     default:
       return state;
   }
-};
+}

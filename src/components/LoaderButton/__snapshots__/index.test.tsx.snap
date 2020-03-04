@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<Button
+  active={false}
+  block={false}
+  bsClass="btn"
+  bsStyle="default"
+  className="LoaderButton "
+  disabled={true}
+>
+  <Glyphicon
+    bsClass="glyphicon"
+    className="spinning"
+    glyph="refresh"
+  />
+  loading
+</Button>
+`;

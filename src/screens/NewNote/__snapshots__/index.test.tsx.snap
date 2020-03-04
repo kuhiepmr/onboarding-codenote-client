@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewNote screen should render success 1`] = `
+<div
+  className="NewNote"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <FormGroup
+      bsClass="form-group"
+      controlId="content"
+    >
+      <FormControl
+        bsClass="form-control"
+        componentClass="textarea"
+        onChange={[Function]}
+        value=""
+      />
+    </FormGroup>
+    <FormGroup
+      bsClass="form-group"
+      controlId="file"
+    >
+      <ControlLabel
+        bsClass="control-label"
+        srOnly={false}
+      >
+        Attachment
+      </ControlLabel>
+      <FormControl
+        bsClass="form-control"
+        componentClass="input"
+        onChange={[Function]}
+        type="file"
+      />
+    </FormGroup>
+    <LoaderButton
+      block={true}
+      bsSize="large"
+      bsStyle="primary"
+      disabled={true}
+      isLoading={false}
+      loadingText="Creating…"
+      text="Create"
+      type="submit"
+    />
+  </form>
+</div>
+`;
