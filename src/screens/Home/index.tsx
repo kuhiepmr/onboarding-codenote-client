@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
 import { API } from 'aws-amplify';
-import { PageHeader, ListGroup, ListGroupItem } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { ListGroup, ListGroupItem, PageHeader } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { withAuthentication } from '../../components/HOC';
 import "./index.css";
 
 class Home extends Component {
@@ -22,7 +23,7 @@ class Home extends Component {
     try {
       const notes = await this.notes();
       this.setState({ notes });
-    } catch(e) {
+    } catch (e) {
       alert(e);
     }
 
@@ -38,25 +39,25 @@ class Home extends Component {
       (note, i) =>
         i !== 0
           ? <LinkContainer
-              key={note.noteId}
-              to={`/notes/${note.noteId}`}
-            >
-              <ListGroupItem header={note.content.trim().split("\n")[0]}>
-                {"Created: " + new Date(note.createdAt).toLocaleString()}
-              </ListGroupItem>
-            </LinkContainer>
+            key={note.noteId}
+            to={`/notes/${note.noteId}`}
+          >
+            <ListGroupItem header={note.content.trim().split("\n")[0]}>
+              {"Created: " + new Date(note.createdAt).toLocaleString()}
+            </ListGroupItem>
+          </LinkContainer>
           : <LinkContainer
-              key="new"
-              to="/notes/new"
-            >
-              <ListGroupItem>
-                <h4>
-                  <b>{"\uFF0B"}</b> Create a new note
+            key="new"
+            to="/notes/new"
+          >
+            <ListGroupItem>
+              <h4>
+                <b>{"\uFF0B"}</b> Create a new note
                 </h4>
-              </ListGroupItem>
-            </LinkContainer>
+            </ListGroupItem>
+          </LinkContainer>
     );
-}
+  }
 
   renderLander() {
     return (
@@ -68,7 +69,7 @@ class Home extends Component {
   }
 
   renderNotes() {
-    return(
+    return (
       <div className="notes">
         <PageHeader>All notes</PageHeader>
         <ListGroup>
@@ -87,4 +88,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withAuthentication(Home);

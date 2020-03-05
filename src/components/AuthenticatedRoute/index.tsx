@@ -1,14 +1,20 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
+import { withAuthenticationStatus } from "../HOC";
 
-export default ({ component: C, props: cProps, ...rest }) =>
-  <Route
+const AuthenticatedRoute = ({ component: C, isAuthenticated, location, ...rest }) => {
+  const { pathname, search } = location;
+
+  return <Route
     {...rest}
     render={props =>
-      cProps.isAuthenticated
-        ? <C {...props} {...cProps} />
+      isAuthenticated
+        ? <C {...props} />
         : <Redirect
-            to={`/login?redirect=${props.location.pathname}${props.location
-              .search}`}
-          />}
+          to={`/login?redirect=${pathname}${search}`}
+        />}
   />;
+}
+
+
+export default withAuthenticationStatus(AuthenticatedRoute);
