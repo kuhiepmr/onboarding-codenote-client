@@ -1,8 +1,11 @@
 export const types = {
-  AUTHENTICATE: 'AUTHENTICATE',
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
 };
 
-export const authenticate = (payload) => ({
-  type: types.AUTHENTICATE,
-  payload
+/**
+ * Return LOGIN action if param is true, otherwise LOGOUT
+ */
+export const authenticate = (isLogin) => ({
+  type: isLogin ? types.LOGIN : types.LOGOUT,
 })

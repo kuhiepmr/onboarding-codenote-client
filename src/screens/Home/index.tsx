@@ -1,9 +1,8 @@
 import { API } from 'aws-amplify';
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, PageHeader } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { authenticate } from "../../actions/authenticate";
+import { withAuthentication } from '../../components/HOC';
 import "./index.css";
 
 class Home extends Component {
@@ -89,12 +88,4 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.authenticate.isAuthenticated,
-});
-
-const mapDispatchToProps = dispatch => ({
-  userHasAuthenticated: (bool) => dispatch(authenticate(bool)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withAuthentication(Home);

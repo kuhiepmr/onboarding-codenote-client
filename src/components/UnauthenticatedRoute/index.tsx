@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux';
 import { Redirect, Route } from "react-router-dom";
+import { withAuthenticationStatus } from "../HOC";
 
 const querystring = (name, url = window.location.href) => {
   name = name.replace(/[[]]/g, "\\$&");
@@ -33,8 +33,4 @@ const UnauthenticatedRoute = ({ component: C, isAuthenticated, ...rest }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.authenticate.isAuthenticated,
-});
-
-export default connect(mapStateToProps)(UnauthenticatedRoute);
+export default withAuthenticationStatus(UnauthenticatedRoute);
