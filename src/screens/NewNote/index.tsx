@@ -1,46 +1,45 @@
-import { API } from "aws-amplify";
 import React, { Component } from "react";
 import { ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
 import LoaderButton from '../../components/LoaderButton';
 import config from '../../config';
 import { s3Upload } from '../../libs/awsLib';
+import { createNote } from "../../services/notes";
+import { formatBytes } from '../../utils/format'
 import './index.css';
 
 class NewNote extends Component {
   constructor(props) {
     super(props);
-
-    this.file = null;
-
     this.state = {
       isLoading: null,
       content: "",
     };
   }
 
-  saveNote(body) {
-    return API.post("notes", `/notes`, { body });
-  }
-
-  validateForm = () => (this.state.content.length)
+  isValidForm = () => (this.state.content.length)
 
   formatFilename(str) {
     return str.replace(/^\w+-/, "");
   }
 
-  handleChange = event => {
+  handleFieldChange = ({ target }) => {
+    const { id, value } = target;
+
     this.setState({
-      [event.target.id]: event.target.value
+      [id]: value
     });
-  }
+  };
 
   handleFileChange = event => {
     const file = event.target.files[0];
 
     if (file && file.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE / 1000000} MB.`);
+      alert(`Please pick a file smaller than ${formatBytes(config.MAX_ATTACHMENT_SIZE)}`);
+      // remove invalid file from input
+      event.target.value = null;
       return;
     }
+
     this.file = file;
   }
 
@@ -49,16 +48,18 @@ class NewNote extends Component {
 
     this.setState({ isLoading: true });
 
+    const { content } = this.state;
+
     try {
       const payload = {
-        content: this.state.content,
+        content,
       }
 
       if (this.file) {
         payload.attachment = await s3Upload(this.file);
       }
 
-      await this.saveNote(payload)
+      await createNote(payload)
 
       this.props.history.push("/");
     } catch (e) {
@@ -75,7 +76,7 @@ class NewNote extends Component {
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="content">
             <FormControl
-              onChange={this.handleChange}
+              onChange={this.handleFieldChange}
               value={content}
               componentClass="textarea"
             />
@@ -88,7 +89,7 @@ class NewNote extends Component {
             block
             bsStyle="primary"
             bsSize="large"
-            disabled={!this.validateForm()}
+            disabled={!this.isValidForm()}
             type="submit"
             isLoading={isLoading}
             text="Create"

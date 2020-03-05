@@ -11,15 +11,13 @@ class Login extends Component {
     password: "",
   };
 
-  componentDidMount() {
-    this.props.isAuthenticated && this.props.history.push('/');
-  }
+  isValidForm = () => (this.state.email.length && this.state.password.length)
 
-  validateForm = () => (this.state.email.length && this.state.password.length)
+  handleFieldChange = ({ target }) => {
+    const { id, value } = target;
 
-  handleChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [id]: value
     });
   };
 
@@ -44,6 +42,8 @@ class Login extends Component {
   handleLoginSuccess = () => this.props.userHasAuthenticated(true);
 
   render() {
+    const { email, password, isLoading } = this.state;
+
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
@@ -52,24 +52,24 @@ class Login extends Component {
             <FormControl
               autoFocus
               type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
+              value={email}
+              onChange={this.handleFieldChange}
             />
           </FormGroup>
           <FormGroup controlId="password" bsSize="large">
             <ControlLabel>Password</ControlLabel>
             <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
+              value={password}
+              onChange={this.handleFieldChange}
               type="password"
             />
           </FormGroup>
           <LoaderButton
             block
             bsSize="large"
-            disabled={!this.validateForm()}
+            disabled={!this.isValidForm()}
             type="submit"
-            isLoading={this.state.isLoading}
+            isLoading={isLoading}
             text="Login"
             loadingText="Logging in..."
           />

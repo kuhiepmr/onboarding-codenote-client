@@ -16,7 +16,7 @@ const ScreensRoot = ({ childProps }) => (
     <AppliedRoute component={Navigation} props={childProps} />
     <Switch>
       <AppliedRoute exact path="/" component={Home} props={childProps} />
-      <AppliedRoute path="/login" exact component={Login} props={childProps} />
+      <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
       <UnauthenticatedRoute path="/signup" exact component={Signup} props={childProps} />
       <AuthenticatedRoute path="/notes/new" exact component={NewNote} props={childProps} />
       <AuthenticatedRoute path="/notes/:id" exact component={NoteDetail} props={childProps} />
